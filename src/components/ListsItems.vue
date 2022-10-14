@@ -12,8 +12,10 @@
           >
             <div class="flex justify-between">
               <div>
-                <input type="checkbox" class="mr-2" id="isDone" />
-                <span class="line-through">List</span>
+                <label>
+                  <input type="checkbox" class="mr-2" />
+                  <span>List</span>
+                </label>
               </div>
               <div @click="deleteListHandler(5)">
                 <i class="mdi mdi-trash-can text-white hover:text-red-500"></i>
@@ -22,24 +24,35 @@
           </li>
         </ul>
         <div class="float-right mt-2">
-          <span class="font-bold text-white">Total: 100 item(s)</span>
+          <span class="font-bold text-white"
+            >Total: <span class="text-emerald-300">100</span> item(s)</span
+          >
         </div>
       </div>
-      <div class="bg-slate-700 rounded ml-1 mr-2 p-3 text-white">
+      <div
+        class="bg-slate-700 rounded ml-1 mr-2 p-3 text-white height-container"
+      >
         <span class="font-bold"> History </span>
-        <div class="overflow-auto">
-          <p class="m-1">
+        <div class="overflow-auto height-over">
+          <p v-for="item in 30" :key="item" class="m-1">
             User 1 <span class="badge-warning">added</span> a new item at
             12:30:45 12:00:00
           </p>
         </div>
+        <div class="float-right mt-2">
+          <span class="font-bold text-white"
+            >Total: <span class="text-emerald-300">100</span> action(s)</span
+          >
+        </div>
       </div>
     </div>
+    <MyModal />
   </div>
 </template>
 
 <script setup>
 import PageHeading from "./PageHeading.vue";
+import MyModal from "@/components/shared/MyModal.vue";
 
 const deleteListHandler = (list_id) => {
   alert(list_id);
