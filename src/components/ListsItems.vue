@@ -1,6 +1,88 @@
 <template>
   <div>
-    <PageHeading title="To Do" />
+    <PageHeading title="To Do">
+      <template v-slot:actions>
+        <!-- <span class="ml-3 hidden sm:block">
+          <button
+            type="button"
+            class="
+              inline-flex
+              items-center
+              rounded-md
+              bg-red-500
+              px-4
+              py-2
+              text-sm
+              font-medium
+              text-white
+              shadow-sm
+              hover:bg-red-700
+              focus:outline-none
+              focus:ring-2
+              focus:ring-indigo-500
+              focus:ring-offset-2
+            "
+          >
+            <i class="mdi mdi-trash-can mdi-18px"></i>
+            Reset List
+          </button>
+        </span> -->
+
+        <!-- <span class="sm:ml-3">
+          <button
+            type="button"
+            class="
+              inline-flex
+              items-center
+              rounded-md
+              border border-transparent
+              bg-indigo-600
+              px-4
+              py-2
+              text-sm
+              font-medium
+              text-white
+              shadow-sm
+              hover:bg-indigo-700
+              focus:outline-none
+              focus:ring-2
+              focus:ring-indigo-500
+              focus:ring-offset-2
+            "
+          >
+            <i class="mdi mdi-rotate-right mr-2"></i>
+            Update
+          </button>
+        </span> -->
+
+        <span class="sm:ml-3">
+          <button
+            @click="newTaskHandler"
+            type="button"
+            class="
+              inline-flex
+              items-center
+              rounded-md
+              border border-transparent
+              bg-indigo-600
+              px-4
+              py-2
+              text-sm
+              font-medium
+              text-white
+              shadow-sm
+              hover:bg-indigo-700
+              focus:outline-none
+              focus:ring-2
+              focus:ring-indigo-500
+              focus:ring-offset-2
+            "
+          >
+            New Task
+          </button>
+        </span>
+      </template>
+    </PageHeading>
     <div class="grid grid-cols-2 overflow-auto h-screen">
       <div class="bg-slate-700 rounded ml-2 mr-1 p-3 height-container">
         <span class="font-bold text-white"> My List </span>
@@ -46,13 +128,26 @@
         </div>
       </div>
     </div>
-    <MyModal />
+    <MyModal :show="showModal" />
   </div>
 </template>
 
 <script setup>
 import PageHeading from "./PageHeading.vue";
 import MyModal from "@/components/shared/MyModal.vue";
+import { computed } from "vue";
+
+let modal = false;
+// let titleModal;
+
+const showModal = computed(() => modal);
+
+const newTaskHandler = () => {
+  // alert(list_id);
+  modal = true;
+  // titleModal = "Add new Task";
+  console.log(modal);
+};
 
 const deleteListHandler = (list_id) => {
   alert(list_id);
