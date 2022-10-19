@@ -119,7 +119,7 @@ const props = defineProps({
   title: String,
 });
 
-console.log(props.title);
+// console.log(props.title);
 </script>
 
 <style lang="scss" scoped>

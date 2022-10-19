@@ -77,6 +77,30 @@
               </div>
               <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
                 <button
+                  @click="cancelFormHandler"
+                  class="
+                    mr-2
+                    inline-flex
+                    justify-center
+                    rounded-md
+                    border border-transparent
+                    bg-gray-500
+                    py-2
+                    px-4
+                    text-sm
+                    font-medium
+                    text-white
+                    shadow-sm
+                    hover:bg-red-400
+                    focus:outline-none
+                    focus:ring-2
+                    focus:ring-indigo-500
+                    focus:ring-offset-2
+                  "
+                >
+                  Cancel
+                </button>
+                <button
                   @click="submitFormHandler"
                   class="
                     inline-flex
@@ -109,17 +133,17 @@
 </template>
 
 <script setup>
-import { defineEmits, defineProps, ref } from "vue";
-import { computed } from "vue";
+import { ref } from "vue";
 
 const props = defineProps({ title: String, show: Boolean });
 
-console.log(props.show);
+// console.log(props.show);
 
 // const showModal = computed(() => props.show);
 let task = ref("");
 let curren_date = new Date().toLocaleDateString();
-// const emit = defineEmits(["showModal"]);
+const emit = defineEmits(["action"]);
+
 // const showSidebar = ref(true);
 // const { breakpoints } = useBreakpoint();
 // watch(breakpoints, (val) => {
@@ -128,6 +152,12 @@ let curren_date = new Date().toLocaleDateString();
 // });
 const submitFormHandler = () => {
   console.log("submit form: " + task.value);
+  emit("action", "save");
+};
+
+const cancelFormHandler = () => {
+  // console.log("submit form: " + task.value);
+  emit("action", "cancel");
 };
 </script>
 
