@@ -35,7 +35,7 @@
         <span class="font-bold text-white"> My List </span>
         <ul class="overflow-auto height-over">
           <li
-            v-for="item in 20"
+            v-for="item in allTasks"
             :key="item"
             class="font-semibold bg-slate-600 py-1 px-2 my-1 rounded-lg"
           >
@@ -43,10 +43,10 @@
               <div>
                 <label>
                   <input type="checkbox" class="mr-2" />
-                  <span>List</span>
+                  <span>{{ item }}</span>
                 </label>
               </div>
-              <div @click="deleteListHandler(5)">
+              <div @click="deleteTaskHandler(item)">
                 <i class="mdi mdi-trash-can text-white hover:text-red-500"></i>
               </div>
             </div>
@@ -75,36 +75,69 @@
         </div>
       </div>
     </div>
-    <MyModal :show="modal" @action="getActionModal" />
+    <MyModal :show="modal" @action="getActionModal">
+      <template v-slot:m-body>
+        <div>
+          <div class="m-2 flex flex-col">
+            <label for="task">Task:</label>
+            <input
+              ref="task"
+              type="text"
+              name="task"
+              id="task"
+              v-model="task"
+              class="rounded border border-gray-500 p-2"
+            />
+          </div>
+          <div class="ml-2">
+            <span class="italic">Date: </span>{{ curren_date }}
+          </div>
+        </div>
+      </template>
+    </MyModal>
   </div>
 </template>
 
 <script setup>
 import PageHeading from "./PageHeading.vue";
 import MyModal from "@/components/shared/MyModal.vue";
-import { ref } from "vue";
+import { onBeforeMount, ref } from "vue";
+import { useStore } from "vuex";
+
+const store = useStore();
+
+let allTasks = ref("");
+
+onBeforeMount(() => {
+  allTasks.value = store.getters.getTasks;
+});
 
 let modal = ref(false);
+
+let task = ref("");
+let curren_date = new Date().toLocaleDateString();
 
 const getActionModal = (val) => {
   switch (val) {
     case "save":
+      store.dispatch("addToList", { task: task.value });
+      modal.value = false;
+      task.value = "";
       break;
 
     case "cancel":
       modal.value = false;
+      task.value = "";
       break;
   }
 };
+
 const newTaskHandler = () => {
-  // alert(list_id);
   modal.value = true;
-  // titleModal = "Add new Task";
-  // console.log(modal);
 };
 
-const deleteListHandler = (list_id) => {
-  alert(list_id);
+const deleteTaskHandler = (param_task) => {
+  store.dispatch("deleteFromList", { task: param_task });
 };
 </script>
 

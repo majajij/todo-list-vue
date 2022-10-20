@@ -1,11 +1,11 @@
 <template>
   <div>
     <div
+      v-show="show"
       class="relative z-10"
       aria-labelledby="modal-title"
       role="dialog"
       aria-modal="true"
-      v-show="show"
     >
       <!--
     Background backdrop, show/hide based on modal state.
@@ -60,21 +60,7 @@
               {{ title }}
             </div>
             <div class="shadow sm:overflow-hidden sm:rounded-md">
-              <div>
-                <div class="m-2 flex flex-col">
-                  <label for="task">Task:</label>
-                  <input
-                    type="text"
-                    name="task"
-                    id="task"
-                    v-model="task"
-                    class="rounded border border-gray-500 p-2"
-                  />
-                </div>
-                <div class="ml-2">
-                  <span class="italic">Date: </span>{{ curren_date }}
-                </div>
-              </div>
+              <slot name="m-body"> </slot>
               <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
                 <button
                   @click="cancelFormHandler"
@@ -133,15 +119,14 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+// import { ref } from "vue";
 
 const props = defineProps({ title: String, show: Boolean });
 
 // console.log(props.show);
 
 // const showModal = computed(() => props.show);
-let task = ref("");
-let curren_date = new Date().toLocaleDateString();
+
 const emit = defineEmits(["action"]);
 
 // const showSidebar = ref(true);
@@ -151,7 +136,7 @@ const emit = defineEmits(["action"]);
 //   emit("showsidebar", showSidebar.value);
 // });
 const submitFormHandler = () => {
-  console.log("submit form: " + task.value);
+  // console.log("submit form: " + task.value);
   emit("action", "save");
 };
 
