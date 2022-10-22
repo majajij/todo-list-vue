@@ -8,4 +8,4 @@ import './style.css'
 // import '../node_modules/@fortawesome/fontawesome-free/css/solid.css'
 import '../node_modules/@mdi/font/css/materialdesignicons.css'
 
-createApp(App).use(router).use(store).use(router).mount('#app')
+createApp(App).use(router).use(store).mount('#app')

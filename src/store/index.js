@@ -3,8 +3,8 @@ import axios from 'axios'
 
 export default createStore({
   state: {
-    token: null,
-    user: null,
+    token: localStorage.getItem('_token') || null,
+    user: JSON.parse(localStorage.getItem('user')) || null,
     tasks: ['mehdi', 'younes', "arabi"],
     histories: [
       {
@@ -41,6 +41,8 @@ export default createStore({
     AUTHENTICATE: (state, payload) => {
       state.user = payload.user
       state.token = payload.authorisation.token
+      localStorage.setItem('_token', payload.authorisation.token)
+      localStorage.setItem('user', JSON.stringify(payload.user))
     }
   },
   actions: {

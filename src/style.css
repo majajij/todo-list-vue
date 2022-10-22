@@ -8,12 +8,12 @@
     }
 
     .badge-warning{
-        @apply badge bg-yellow-500 
+        @apply badge bg-yellow-400 
     }
     .badge-success{
-        @apply badge bg-green-500 
+        @apply badge bg-green-400 
     }
     .badge-danger{
-        @apply badge bg-red-500 
+        @apply badge bg-red-400 
     }
 }

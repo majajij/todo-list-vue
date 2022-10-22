@@ -28,7 +28,7 @@
               text-gray-900
             "
           >
-            Sign in
+            Register
           </h2>
           <!-- <p class="mt-2 text-center text-sm text-gray-600">
             Or
@@ -39,9 +39,38 @@
             >
           </p> -->
         </div>
-        <input type="hidden" name="remember" value="true" />
-        <div class="-space-y-px rounded-md shadow-sm">
-          <div>
+        <!-- <input type="hidden" name="remember" value="true" /> -->
+        <div class="rounded-md shadow-sm">
+          <div class="mb-2">
+            <label for="name" class="sr-only">Name</label>
+            <input
+              id="name"
+              v-model="name"
+              name="name"
+              type="text"
+              autocomplete="name"
+              required
+              class="
+                relative
+                block
+                w-full
+                appearance-none
+                rounded
+                border border-gray-300
+                px-3
+                py-2
+                text-gray-900
+                placeholder-gray-500
+                focus:z-10
+                focus:border-indigo-500
+                focus:outline-none
+                focus:ring-indigo-500
+                sm:text-sm
+              "
+              placeholder="Full name ..."
+            />
+          </div>
+          <div class="mb-2">
             <label for="email-address" class="sr-only">Email address</label>
             <input
               id="email-address"
@@ -55,7 +84,7 @@
                 block
                 w-full
                 appearance-none
-                rounded-none rounded-t-md
+                rounded
                 border border-gray-300
                 px-3
                 py-2
@@ -70,7 +99,7 @@
               placeholder="Email address"
             />
           </div>
-          <div>
+          <div class="mb-2">
             <label for="password" class="sr-only">Password</label>
             <input
               id="password"
@@ -84,7 +113,7 @@
                 block
                 w-full
                 appearance-none
-                rounded-none rounded-b-md
+                rounded
                 border border-gray-300
                 px-3
                 py-2
@@ -97,6 +126,37 @@
                 sm:text-sm
               "
               placeholder="Password"
+            />
+          </div>
+          <div class="mb-2">
+            <label for="confirm-password" class="sr-only"
+              >Confirm Password</label
+            >
+            <input
+              id="confirm-password"
+              v-model="confirm_password"
+              name="confirm-password"
+              type="password"
+              autocomplete="current-password"
+              required
+              class="
+                relative
+                block
+                w-full
+                appearance-none
+                rounded
+                border border-gray-300
+                px-3
+                py-2
+                text-gray-900
+                placeholder-gray-500
+                focus:z-10
+                focus:border-indigo-500
+                focus:outline-none
+                focus:ring-indigo-500
+                sm:text-sm
+              "
+              placeholder="Confirm password"
             />
           </div>
         </div>
@@ -159,16 +219,24 @@ const router = useRouter();
 
 let email = ref("");
 let password = ref("");
+let confirm_password = ref("");
+let name = ref("");
 
 const loginHandler = () => {
+  // if(name.value.length > 0){
+
+  // }else{
+
+  // }
   store
-    .dispatch("authenticate", {
+    .dispatch("register", {
+      name: name.value,
       email: email.value,
       password: password.value,
     })
     .then(() => {
       // console.log(router);
-      router.push("/home");
+      router.push("/login");
     })
     .catch((err) => {
       console.log(err);
