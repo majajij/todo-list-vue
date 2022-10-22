@@ -54,7 +54,9 @@
         </ul>
         <div class="float-right mt-2">
           <span class="font-bold text-white"
-            >Total: <span class="text-emerald-300">100</span> item(s)</span
+            >Total:
+            <span class="text-emerald-300">{{ allTasks.length }}</span>
+            item(s)</span
           >
         </div>
       </div>
@@ -63,9 +65,12 @@
       >
         <span class="font-bold"> History </span>
         <div class="overflow-auto height-over">
-          <p v-for="item in 30" :key="item" class="m-1">
-            User 1 <span class="badge-warning">added</span> a new item at
-            12:30:45 12:00:00
+          <p
+            v-for="item in 30"
+            :key="item"
+            class="m-1 badge-success odd:badge-warning"
+          >
+            User 1 added a new item at 12:30:45 12:00:00
           </p>
         </div>
         <div class="float-right mt-2">
@@ -75,13 +80,12 @@
         </div>
       </div>
     </div>
-    <MyModal :show="modal" @action="getActionModal">
+    <MyModal :show="modal" title="Add new task" @action="getActionModal">
       <template v-slot:m-body>
         <div>
           <div class="m-2 flex flex-col">
             <label for="task">Task:</label>
             <input
-              ref="task"
               type="text"
               name="task"
               id="task"
@@ -101,16 +105,19 @@
 <script setup>
 import PageHeading from "./PageHeading.vue";
 import MyModal from "@/components/shared/MyModal.vue";
-import { onBeforeMount, ref } from "vue";
+import { computed, ref } from "vue";
 import { useStore } from "vuex";
 
 const store = useStore();
 
-let allTasks = ref("");
+// let allTasks = ref("");
+// let allTasks = computed(() => );
+let allTasks = computed(() => store.getters.getTasks);
 
-onBeforeMount(() => {
-  allTasks.value = store.getters.getTasks;
-});
+// onBeforeMount(() => {
+//   allTasks.value = store.getters.getTasks;
+//   // let allTasks = computed(() => store.getters.getTasks);
+// });
 
 let modal = ref(false);
 

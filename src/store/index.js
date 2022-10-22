@@ -2,7 +2,19 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-    tasks: ['mehdi', 'younes']
+    tasks: ['mehdi', 'younes'],
+    histories: [
+      {
+        user: {
+          id: 1,
+          username: "majajij",
+          name: "el mehdi ait fakir",
+        },
+        status: 2,
+        action: "added a new item",
+        datetime: "12:30:45 12:00:00"
+      }
+    ],
   },
   getters: {
     getTasks: (state) => state.tasks
