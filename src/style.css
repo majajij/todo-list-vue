@@ -13,4 +13,7 @@
     .badge-success{
         @apply badge bg-green-500 
     }
+    .badge-danger{
+        @apply badge bg-red-500 
+    }
 }

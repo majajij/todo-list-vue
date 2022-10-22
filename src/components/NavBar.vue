@@ -83,7 +83,7 @@
                 class="block h-8 w-auto"
                 src="../../public/to-do.png"
                 alt="To Do"
-              />
+              >
               <!-- <img
                 class="hidden h-8 w-auto lg:block"
                 src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
@@ -97,7 +97,6 @@
                 <a
                   v-for="menu in appMenu"
                   :key="menu.id"
-                  @click="MenuClickHandler(menu.link)"
                   class="
                     text-black-300
                     hover:bg-gray-700 hover:text-white
@@ -108,8 +107,8 @@
                     font-medium
                   "
                   aria-current="page"
-                  >{{ menu.name }}</a
-                >
+                  @click="MenuClickHandler(menu.link)"
+                >{{ menu.name }}</a>
               </div>
             </div>
           </div>
@@ -162,7 +161,7 @@
             <div class="relative ml-3">
               <div>
                 <button
-                  @click="userMenuHandler"
+                  id="user-menu-button"
                   type="button"
                   class="
                     flex
@@ -175,16 +174,16 @@
                     focus:ring-offset-2
                     focus:ring-offset-gray-800
                   "
-                  id="user-menu-button"
                   aria-expanded="false"
                   aria-haspopup="true"
+                  @click="userMenuHandler"
                 >
                   <span class="sr-only">Open user menu</span>
                   <img
                     class="h-8 w-8 rounded-full"
                     src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                     alt=""
-                  />
+                  >
                 </button>
               </div>
 
@@ -221,29 +220,26 @@
               >
                 <!-- Active: "bg-gray-100", Not Active: "" -->
                 <a
-                  href="#"
-                  class="block px-4 py-2 text-sm text-gray-700"
-                  role="menuitem"
-                  tabindex="-1"
                   id="user-menu-item-0"
-                  >Your Profile</a
-                >
-                <a
                   href="#"
                   class="block px-4 py-2 text-sm text-gray-700"
                   role="menuitem"
                   tabindex="-1"
+                >Your Profile</a>
+                <a
                   id="user-menu-item-1"
-                  >Settings</a
-                >
-                <a
                   href="#"
                   class="block px-4 py-2 text-sm text-gray-700"
                   role="menuitem"
                   tabindex="-1"
+                >Settings</a>
+                <a
                   id="user-menu-item-2"
-                  >Sign out</a
-                >
+                  href="#"
+                  class="block px-4 py-2 text-sm text-gray-700"
+                  role="menuitem"
+                  tabindex="-1"
+                >Sign out</a>
               </div>
             </div>
           </div>
@@ -271,7 +267,7 @@
                 "
               >
                 <!-- Heroicon name: mini/check -->
-                <i class="mdi mdi-logout mr-2"></i>
+                <i class="mdi mdi-logout mr-2" />
                 Logout
               </button>
             </span>
@@ -280,7 +276,10 @@
       </div>
 
       <!-- Mobile menu, show/hide based on menu state. -->
-      <div class="sm:hidden" id="mobile-menu">
+      <div
+        id="mobile-menu"
+        class="sm:hidden"
+      >
         <div class="space-y-1 px-2 pt-2 pb-3">
           <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
           <a
@@ -296,8 +295,7 @@
               font-medium
             "
             aria-current="page"
-            >Dashboard</a
-          >
+          >Dashboard</a>
 
           <a
             href="#"
@@ -311,8 +309,7 @@
               text-base
               font-medium
             "
-            >Team</a
-          >
+          >Team</a>
 
           <a
             href="#"
@@ -326,8 +323,7 @@
               text-base
               font-medium
             "
-            >Projects</a
-          >
+          >Projects</a>
 
           <a
             href="#"
@@ -341,8 +337,7 @@
               text-base
               font-medium
             "
-            >Calendar</a
-          >
+          >Calendar</a>
         </div>
       </div>
     </nav>

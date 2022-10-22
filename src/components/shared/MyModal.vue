@@ -19,7 +19,7 @@
   -->
       <div
         class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
-      ></div>
+      />
 
       <div class="fixed inset-0 z-10 overflow-y-auto">
         <div
@@ -60,10 +60,9 @@
               {{ title }}
             </div>
             <div class="shadow sm:overflow-hidden sm:rounded-md">
-              <slot name="m-body"> </slot>
+              <slot name="m-body" />
               <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
                 <button
-                  @click="cancelFormHandler"
                   class="
                     mr-2
                     inline-flex
@@ -83,11 +82,11 @@
                     focus:ring-indigo-500
                     focus:ring-offset-2
                   "
+                  @click="cancelFormHandler"
                 >
                   Cancel
                 </button>
                 <button
-                  @click="submitFormHandler"
                   class="
                     inline-flex
                     justify-center
@@ -106,6 +105,7 @@
                     focus:ring-indigo-500
                     focus:ring-offset-2
                   "
+                  @click="submitFormHandler"
                 >
                   Save
                 </button>

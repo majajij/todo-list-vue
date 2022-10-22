@@ -1,13 +1,7 @@
 <template>
   <div>
     <div
-      class="
-        lg:flex lg:items-center lg:justify-between
-        bg-slate-800
-        p-3
-        m-2
-        rounded-lg
-      "
+      class="flex items-center justify-between bg-slate-800 p-3 m-2 rounded-lg"
     >
       <div class="min-w-0 flex-1">
         <h2
@@ -69,7 +63,7 @@
         </div>
       </div>
       <div class="mt-5 flex lg:mt-0 lg:ml-4">
-        <slot name="actions"></slot>
+        <slot name="actions" />
       </div>
     </div>
   </div>
