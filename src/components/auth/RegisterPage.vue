@@ -70,6 +70,9 @@
               placeholder="Full name ..."
             />
           </div>
+          <!-- <div v-if="errors.name">
+            {{ errors.name }}
+          </div> -->
           <div class="mb-2">
             <label for="email-address" class="sr-only">Email address</label>
             <input
@@ -160,7 +163,6 @@
             />
           </div>
         </div>
-
         <div>
           <button
             class="
@@ -183,7 +185,7 @@
               focus:ring-indigo-500
               focus:ring-offset-2
             "
-            @click="loginHandler"
+            @click="registerHandler"
           >
             <span class="absolute inset-y-0 left-0 flex items-center pl-3">
               <!-- Heroicon name: mini/lock-closed -->
@@ -210,7 +212,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 
@@ -222,25 +224,39 @@ let password = ref("");
 let confirm_password = ref("");
 let name = ref("");
 
-const loginHandler = () => {
-  // if(name.value.length > 0){
+const errors = computed(() => {
+  return {
+    email: email.value === "" ? "Email field is required" : "",
+    password: password.value === "" ? "Password field is required" : "",
+    confirm_password:
+      confirm_password.value === "" ? "Confirm password field is required" : "",
+    name: name.value === "" ? "Name field is required" : "",
+    pass_check:
+      password.value != confirm_password.value
+        ? "Password and confirm password should be the same"
+        : "",
+  };
+});
 
-  // }else{
-
-  // }
-  store
-    .dispatch("register", {
-      name: name.value,
-      email: email.value,
-      password: password.value,
-    })
-    .then(() => {
-      // console.log(router);
-      router.push("/login");
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+const registerHandler = () => {
+  const hasError = !Object.values(errors.value).every((e) => e === "");
+  if (!hasError) {
+    store
+      .dispatch("register", {
+        name: name.value,
+        email: email.value,
+        password: password.value,
+      })
+      .then(() => {
+        router.push("/");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  } else {
+    console.log(errors.value);
+    //TODO add alert notifications toast
+  }
 };
 </script>
 

@@ -43,6 +43,12 @@ export default createStore({
       state.token = payload.authorisation.token
       localStorage.setItem('_token', payload.authorisation.token)
       localStorage.setItem('user', JSON.stringify(payload.user))
+    },
+    REGISTER: (state, payload) => {
+      state.user = payload.user
+      state.token = payload.authorisation.token
+      localStorage.setItem('_token', payload.authorisation.token)
+      localStorage.setItem('user', JSON.stringify(payload.user))
     }
   },
   actions: {
@@ -64,6 +70,19 @@ export default createStore({
         axios.post('http://localhost:8000/api/login', credentials)
           .then((res) => {
             commit('AUTHENTICATE', res.data)
+            resolve()
+          })
+          .catch((err) => {
+            reject(err)
+          })
+      })
+    },
+
+    register: ({ commit }, data) => {
+      return new Promise((resolve, reject) => {
+        axios.post('http://localhost:8000/api/register', data)
+          .then((res) => {
+            commit('REGISTER', res.data)
             resolve()
           })
           .catch((err) => {
