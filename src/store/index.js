@@ -73,7 +73,7 @@ export default createStore({
             resolve()
           })
           .catch((err) => {
-            reject(err)
+            reject(err.response.data)
           })
       })
     },
@@ -86,7 +86,7 @@ export default createStore({
             resolve()
           })
           .catch((err) => {
-            reject(err)
+            reject(err.response.data)
           })
       })
     }

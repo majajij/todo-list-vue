@@ -171,7 +171,7 @@ const loginHandler = () => {
       router.push("/home");
     })
     .catch((err) => {
-      console.log(err);
+      console.log(err.data);
     });
 };
 </script>

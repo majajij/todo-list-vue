@@ -251,7 +251,8 @@ const registerHandler = () => {
         router.push("/");
       })
       .catch((err) => {
-        console.log(err);
+        alert(err.data.message);
+        console.log(err.data.message);
       });
   } else {
     console.log(errors.value);
