@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="bg-slate-700 rounded ml-1 mr-2 p-3 text-white height-container">
+    <div class="bg-slate-200 rounded ml-1 mr-2 p-3 text-black height-container">
       <span class="font-bold"> History </span>
       <div class="overflow-auto height-over">
         <p
@@ -9,7 +9,6 @@
           class="m-1"
           :class="item.status == 1 ? 'badge-success' : 'badge-danger'"
         >
-          <!-- User 1 added a new item at 12:30:45 12:00:00 -->
           {{
             item.status == 1
               ? "Item added successfully"
@@ -18,7 +17,9 @@
         </p>
       </div>
       <div class="float-right mt-2">
-        <span class="font-bold text-white">Total: <span class="text-emerald-300">100</span> action(s)</span>
+        <span class="font-bold text-black"
+          >Total: <span class="text-blue-800">100</span> action(s)</span
+        >
       </div>
     </div>
   </div>

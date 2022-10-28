@@ -153,6 +153,7 @@
 import { ref } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
+import { notify } from "@kyvg/vue3-notification";
 
 const store = useStore();
 const router = useRouter();
@@ -171,7 +172,11 @@ const loginHandler = () => {
       router.push("/home");
     })
     .catch((err) => {
-      console.log(err.data);
+      notify({
+        title: "Authentication",
+        type: "error",
+        text: err.message,
+      });
     });
 };
 </script>

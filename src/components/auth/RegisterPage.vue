@@ -215,6 +215,7 @@
 import { ref, computed } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
+import { notify } from "@kyvg/vue3-notification";
 
 const store = useStore();
 const router = useRouter();
@@ -251,12 +252,29 @@ const registerHandler = () => {
         router.push("/");
       })
       .catch((err) => {
-        alert(err.data.message);
-        console.log(err.data.message);
+        // alert(err.data.message);
+        // console.log(err.data.message);
+        notify({
+          title: "Registration",
+          type: "error",
+          text: err.data.message,
+        });
       });
   } else {
     console.log(errors.value);
-    //TODO add alert notifications toast
+    let msg = "<ul class='list-disc pl-3'>";
+    Object.keys(errors.value).forEach((key) => {
+      // console.log(key);
+      if (errors.value[key] != "") msg += "<li>" + errors.value[key] + "</li>";
+    });
+    msg += "</ul>";
+
+    console.log(msg);
+    notify({
+      title: "Registration",
+      type: "error",
+      text: msg,
+    });
   }
 };
 </script>

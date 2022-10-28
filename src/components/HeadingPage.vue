@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      class="flex items-center justify-between bg-slate-800 p-3 m-2 rounded-lg"
+      class="flex items-center justify-between bg-slate-200 p-3 m-2 rounded-lg"
     >
       <div class="min-w-0 flex-1">
         <h2
@@ -9,7 +9,7 @@
             text-2xl
             font-bold
             leading-7
-            text-white
+            text-black
             sm:truncate sm:text-3xl sm:tracking-tight
           "
         >
@@ -22,7 +22,7 @@
             sm:mt-0 sm:flex-row sm:flex-wrap sm:space-x-6
           "
         >
-          <div class="mt-2 flex items-center text-sm text-gray-200">
+          <div class="mt-2 flex items-center text-sm text-black">
             <!-- Heroicon name: mini/briefcase -->
             <svg
               class="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400"
@@ -43,7 +43,7 @@
             Full-time
           </div>
 
-          <div class="mt-2 flex items-center text-sm text-gray-200">
+          <div class="mt-2 flex items-center text-sm text-black">
             <!-- Heroicon name: mini/calendar -->
             <svg
               class="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400"

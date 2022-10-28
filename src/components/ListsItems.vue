@@ -1,33 +1,28 @@
 <template>
   <div>
-    <div class="bg-slate-700 rounded ml-2 mr-1 p-3 height-container">
-      <span class="font-bold text-white"> My List </span>
+    <div class="bg-slate-200 rounded ml-2 mr-1 p-3 height-container">
+      <span class="font-bold text-black"> My List </span>
       <ul class="overflow-auto height-over">
-        <li
-          v-for="item in allTasks"
-          :key="item"
-          class="font-semibold bg-slate-600 py-1 px-2 my-1 rounded-lg"
-        >
+        <li v-for="item in allTasks" :key="item" class="font-semibold my-2">
           <div class="flex justify-between">
             <div>
               <label>
-                <input
-                  type="checkbox"
-                  class="mr-2"
-                >
+                <input type="checkbox" class="mr-2" />
                 <span>{{ item }}</span>
               </label>
             </div>
             <div @click="deleteTaskHandler(item)">
-              <i class="mdi mdi-trash-can text-white hover:text-red-500" />
+              <i class="mdi mdi-trash-can text-red-500 hover:text-red-800" />
             </div>
           </div>
         </li>
       </ul>
       <div class="float-right mt-2">
-        <span class="font-bold text-white">Total:
-          <span class="text-emerald-300">{{ allTasks.length }}</span>
-          item(s)</span>
+        <span class="font-bold text-black"
+          >Total:
+          <span class="text-blue-800">{{ allTasks.length }}</span>
+          item(s)</span
+        >
       </div>
     </div>
   </div>
