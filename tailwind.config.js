@@ -10,7 +10,6 @@ module.exports = {
   plugins: [],
   variants: {
     extend: {
-      border: ['focus'],
     }
   },
 }

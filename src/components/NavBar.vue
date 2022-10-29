@@ -160,7 +160,7 @@
 
             <!-- Profile dropdown -->
             <div class="relative ml-3">
-              <div>
+              <div class="flex items-center">
                 <button
                   id="user-menu-button"
                   type="button"
@@ -179,13 +179,13 @@
                   aria-haspopup="true"
                   @click="userMenuHandler"
                 >
-                  <span class="sr-only">Open user menu</span>
                   <img
                     class="h-8 w-8 rounded-full"
                     src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                     alt=""
                   />
                 </button>
+                <div class="ml-2">{{ user.name }}</div>
               </div>
 
               <!--
@@ -250,6 +250,7 @@
           <div>
             <span class="sm:ml-3">
               <button
+                @click="logoutHandler"
                 type="button"
                 class="
                   inline-flex
@@ -352,7 +353,11 @@
 <script setup>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import { useStore } from "vuex";
 
+const store = useStore();
+
+let user = store.getters.getUser;
 let userMenu = ref(false);
 let appMenu = ref(null);
 const router = useRouter();
@@ -367,6 +372,10 @@ const userMenuHandler = () => {
 
 const MenuClickHandler = (menu) => {
   router.push(menu);
+};
+
+const logoutHandler = () => {
+  console.log("logout");
 };
 </script>
 

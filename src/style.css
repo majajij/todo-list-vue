@@ -2,18 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+    html {
+        font-family: Georgia, serif;
+    }
+  }
+
 @layer components {
     .badge{
         @apply rounded-lg p-1 text-black
     }
 
     .badge-warning{
-        @apply badge bg-yellow-400 
+        @apply badge bg-yellow-400 hover:bg-yellow-600
     }
     .badge-success{
-        @apply badge bg-green-400 
+        @apply badge bg-green-400 hover:bg-green-600
     }
     .badge-danger{
-        @apply badge bg-red-400 
+        @apply badge bg-red-400 hover:bg-red-600
     }
 }
