@@ -64,6 +64,14 @@ export default createStore({
       localStorage.setItem('user', JSON.stringify(payload.user))
     },
 
+    LOGOUT: (state) => {
+      state.tasks = []
+      state.histories = []
+      state.token = null
+      state.user = null
+      localStorage.clear()
+    },
+
     GET_LIST: (state, payload) => {
       // state.tasks = payload.data.data
       state.tasks = payload.data
@@ -125,6 +133,24 @@ export default createStore({
           .then((res) => {
             commit('REGISTER', res.data)
             resolve()
+          })
+          .catch((err) => {
+            reject(err.response.data)
+          })
+      })
+    },
+
+    logout: ({ commit, state }) => {
+      let config = {
+        headers: {
+          Authorization: 'Bearer ' + state.token,
+        }
+      }
+      return new Promise((resolve, reject) => {
+        axios.post('http://localhost:8000/api/logout', {}, config)
+          .then((res) => {
+            commit('LOGOUT')
+            resolve(res.data)
           })
           .catch((err) => {
             reject(err.response.data)

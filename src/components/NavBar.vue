@@ -354,6 +354,7 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
+import { notify } from "@kyvg/vue3-notification";
 
 const store = useStore();
 
@@ -375,7 +376,21 @@ const MenuClickHandler = (menu) => {
 };
 
 const logoutHandler = () => {
-  console.log("logout");
+  store
+    .dispatch("logout")
+    .then((res) => {
+      // console.log("logout");
+      router.push("/login").catch((err) => {
+        console.log(err);
+      });
+    })
+    .catch((err) => {
+      notify({
+        title: "Logout",
+        type: "error",
+        text: err.data.message,
+      });
+    });
 };
 </script>
 
