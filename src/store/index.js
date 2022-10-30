@@ -37,7 +37,8 @@ export default createStore({
     getTasks: (state) => state.tasks,
     getHistories: (state) => state.histories,
     getUser: (state) => state.user,
-    getToken: (state) => state.token
+    getToken: (state) => state.token,
+    isAuthenticated: (state) => state.token ? true : false
   },
   mutations: {
     ADD_TO_LIST: (state, payload) => {
