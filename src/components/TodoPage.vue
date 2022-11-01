@@ -31,11 +31,7 @@
       </template>
     </HeadingPage>
 
-    <MyModal
-      :show="modal"
-      title="Add new task"
-      @action="getActionModal"
-    >
+    <MyModal :show="modal" title="Add new task" @action="getActionModal">
       <template #m-body>
         <div>
           <div class="m-2 flex flex-col">
@@ -46,7 +42,7 @@
               type="text"
               name="task"
               class="rounded border border-gray-500 p-2"
-            >
+            />
           </div>
           <div class="ml-2">
             <span class="italic">Date: </span>{{ curren_date }}

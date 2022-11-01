@@ -32,6 +32,7 @@ export default createStore({
         datetime: "12:30:45 12:00:00"
       },
     ],
+    show_confirm: false
   },
   getters: {
     getTasks: (state) => state.tasks,
@@ -70,6 +71,10 @@ export default createStore({
       state.token = null
       state.user = null
       localStorage.clear()
+    },
+
+    SHOW_CONFIRM: (state, payload) => {
+      state.show_confirm = payload
     },
 
     GET_LIST: (state, payload) => {
@@ -173,6 +178,18 @@ export default createStore({
         }).catch(err => {
           reject(err.response.data)
         })
+      })
+    },
+
+    showConfirmDialog: ({ commit }, payload = true) => {
+      return new Promise(() => {
+        commit('SHOW_CONFIRM', payload)
+      })
+    },
+
+    confirmDialog: ({ commit }, payload) => {
+      return new Promise((resolve, reject) => {
+        payload ? resolve() : reject()
       })
     }
   },
