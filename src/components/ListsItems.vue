@@ -28,7 +28,7 @@
 </template>
 
 <script setup>
-import { computed, ref, onBeforeMount } from "vue";
+import { computed } from "vue";
 import { useStore } from "vuex";
 import { notify } from "@kyvg/vue3-notification";
 
@@ -45,22 +45,24 @@ store.dispatch("getList").catch((err) => {
 let allTasks = computed(() => store.getters.getTasks);
 
 const deleteTaskHandler = (task_id) => {
-  store
-    .dispatch("deleteFromList", { task_id })
-    .then((res) => {
-      notify({
-        title: "Remove",
-        type: "success",
-        text: "Deleted sucess fully",
+  if (confirm("Are you sure?")) {
+    store
+      .dispatch("deleteFromList", { task_id })
+      .then((res) => {
+        notify({
+          title: "Remove",
+          type: "success",
+          text: "Deleted sucess fully",
+        });
+      })
+      .catch((err) => {
+        notify({
+          title: "Remove",
+          type: "error",
+          text: err.data.message,
+        });
       });
-    })
-    .catch((err) => {
-      notify({
-        title: "Remove",
-        type: "error",
-        text: err.data.message,
-      });
-    });
+  }
 };
 </script>
 

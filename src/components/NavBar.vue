@@ -160,7 +160,7 @@
 
             <!-- Profile dropdown -->
             <div class="relative ml-3">
-              <div class="flex items-center">
+              <div @click="userMenuHandler" class="flex items-center">
                 <button
                   id="user-menu-button"
                   type="button"
@@ -177,7 +177,6 @@
                   "
                   aria-expanded="false"
                   aria-haspopup="true"
-                  @click="userMenuHandler"
                 >
                   <img
                     class="h-8 w-8 rounded-full"
@@ -186,64 +185,6 @@
                   />
                 </button>
                 <div class="ml-2">{{ user.name }}</div>
-              </div>
-
-              <!--
-            Dropdown menu, show/hide based on menu state.
-
-            Entering: "transition ease-out duration-100"
-              From: "transform opacity-0 scale-95"
-              To: "transform opacity-100 scale-100"
-            Leaving: "transition ease-in duration-75"
-              From: "transform opacity-100 scale-100"
-              To: "transform opacity-0 scale-95"
-          -->
-              <div
-                v-show="userMenu"
-                class="
-                  absolute
-                  right-0
-                  z-10
-                  mt-2
-                  w-48
-                  origin-top-right
-                  rounded-md
-                  bg-white
-                  py-1
-                  shadow-lg
-                  ring-1 ring-black ring-opacity-5
-                  focus:outline-none
-                "
-                role="menu"
-                aria-orientation="vertical"
-                aria-labelledby="user-menu-button"
-                tabindex="-1"
-              >
-                <!-- Active: "bg-gray-100", Not Active: "" -->
-                <a
-                  id="user-menu-item-0"
-                  href="#"
-                  class="block px-4 py-2 text-sm text-gray-700"
-                  role="menuitem"
-                  tabindex="-1"
-                  >Your Profile</a
-                >
-                <a
-                  id="user-menu-item-1"
-                  href="#"
-                  class="block px-4 py-2 text-sm text-gray-700"
-                  role="menuitem"
-                  tabindex="-1"
-                  >Settings</a
-                >
-                <a
-                  id="user-menu-item-2"
-                  href="#"
-                  class="block px-4 py-2 text-sm text-gray-700"
-                  role="menuitem"
-                  tabindex="-1"
-                  >Sign out</a
-                >
               </div>
             </div>
           </div>
@@ -359,7 +300,6 @@ import { notify } from "@kyvg/vue3-notification";
 const store = useStore();
 
 let user = store.getters.getUser;
-let userMenu = ref(false);
 let appMenu = ref(null);
 const router = useRouter();
 appMenu.value = [
@@ -368,7 +308,7 @@ appMenu.value = [
 ];
 
 const userMenuHandler = () => {
-  userMenu.value = !userMenu.value;
+  router.push("/profile");
 };
 
 const MenuClickHandler = (menu) => {

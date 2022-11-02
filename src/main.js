@@ -8,7 +8,7 @@ import Notifications from '@kyvg/vue3-notification'
 // import '../node_modules/@fortawesome/fontawesome-free/css/fontawesome.css'
 // import '../node_modules/@fortawesome/fontawesome-free/css/brands.css'
 // import '../node_modules/@fortawesome/fontawesome-free/css/solid.css'
-import '../node_modules/@mdi/font/css/materialdesignicons.css'
+// import '../node_modules/@mdi/font/css/materialdesignicons.css'
 
 createApp(App)
     .use(router)

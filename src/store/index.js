@@ -154,12 +154,12 @@ export default createStore({
       return new Promise((resolve, reject) => {
         axios.post('http://localhost:8000/api/logout', {}, config)
           .then((res) => {
-            commit('LOGOUT')
             resolve(res.data)
           })
           .catch((err) => {
             reject(err.response.data)
           })
+        commit('LOGOUT')
       })
     },
 
